@@ -7,6 +7,12 @@ noteCtrl.getAllNotes = async (req, res) => {
 	res.json(allNotes);
 };
 
+noteCtrl.getAllMyNotes = async (req, res) => {
+	const { userId } = req.query;
+	let allNotes = await Note.find({ userId });
+	res.json(allNotes);
+};
+
 noteCtrl.getNoteById = async (req, res) => {
 	let note = await Note.findById(req.params.id);
 	res.json(note);
